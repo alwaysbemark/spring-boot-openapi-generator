@@ -1,0 +1,23 @@
+openapi: "3.0.2"
+
+info:
+  version: "1.0.0"
+  title: Example REST API
+
+paths:
+  /example:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OkayResponse"
+          description: OK
+
+components:
+  schemas:
+    OkayResponse:
+      properties:
+        response:
+          type: string

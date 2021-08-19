@@ -1,0 +1,41 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'org.openapi.generator' version '5.2.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation 'io.springfox:springfox-swagger2:3.0.0'
+}
+
+test {
+    useJUnitPlatform {
+    }
+}
+
+openApiGenerate {
+    generatorName = "spring"
+    inputSpec = "$projectDir/src/main/resources/api.yml"
+    outputDir = "$projectDir"
+    apiPackage = "alwaysbemark.example.api"
+    modelPackage = "alwaysbemark.example.model"
+    configOptions = [
+            interfaceOnly: "true",
+            openApiNullable: "false",
+            skipDefaultInterface: "true"
+    ]
+    globalProperties = [
+            apis: "",
+            models: ""
+    ]
+}
+compileJava.dependsOn tasks.openApiGenerate
+processResources.dependsOn tasks.openApiGenerate

@@ -1,0 +1,6 @@
+.idea/
+.gradle/
+build
+
+src/main/java/alwaysbemark/example/api
+src/main/java/alwaysbemark/example/model
